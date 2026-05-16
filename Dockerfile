@@ -15,6 +15,8 @@ RUN uv pip install --system --no-cache ".[http]"
 # ── Runtime ────────────────────────────────────────────────────────────────────
 FROM python:3.12-slim AS runtime
 
+LABEL io.modelcontextprotocol.server.name="io.github.deficlow/hyperstore-mcp"
+
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     MCP_HOST=0.0.0.0 \

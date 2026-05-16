@@ -1,5 +1,7 @@
 # HyperStore MCP
 
+<!-- mcp-name: io.github.deficlow/hyperstore-mcp -->
+
 > Plug 6,500+ AI apps into any LLM via the [Model Context Protocol](https://modelcontextprotocol.io).
 
 [![PyPI](https://img.shields.io/pypi/v/hyperstore-mcp.svg)](https://pypi.org/project/hyperstore-mcp/)

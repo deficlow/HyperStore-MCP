@@ -1,0 +1,40 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.deficlow/hyperstore-mcp",
+  "title": "HyperStore",
+  "description": "Search and inspect 6,500+ curated AI apps from the HyperStore directory.",
+  "version": "0.1.1",
+  "repository": {
+    "url": "https://github.com/deficlow/HyperStore-MCP",
+    "source": "github"
+  },
+  "websiteUrl": "https://store.hypergpt.ai",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "hyperstore-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      }
+    },
+    {
+      "registryType": "oci",
+      "identifier": "ghcr.io/deficlow/hyperstore-mcp:0.1.1",
+      "transport": {
+        "type": "streamable-http",
+        "url": "http://localhost:8080/mcp"
+      }
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.store.hypergpt.ai/mcp"
+    },
+    {
+      "type": "sse",
+      "url": "https://mcp.store.hypergpt.ai/sse"
+    }
+  ]
+}
