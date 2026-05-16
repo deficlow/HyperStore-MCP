@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "hyperstore": {
+      "command": "uvx",
+      "args": ["hyperstore-mcp"]
+    }
+  }
+}

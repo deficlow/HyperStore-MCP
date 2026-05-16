@@ -1,0 +1,10 @@
+{
+  "context_servers": {
+    "hyperstore": {
+      "command": {
+        "path": "uvx",
+        "args": ["hyperstore-mcp"]
+      }
+    }
+  }
+}
