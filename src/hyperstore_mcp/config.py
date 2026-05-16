@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from pydantic import Field
+from pydantic import AliasChoices, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from . import __version__
@@ -23,8 +23,9 @@ class Settings(BaseSettings):
         alias="HYPERSTORE_USER_AGENT",
     )
 
-    host: str = Field(default="0.0.0.0", alias="MCP_HOST")
-    port: int = Field(default=8080, alias="MCP_PORT")
+    host: str = Field(default="0.0.0.0", validation_alias=AliasChoices("MCP_HOST", "HOST"))
+    # PORT is the Railway/Heroku/Cloud Run convention; MCP_PORT is the explicit override.
+    port: int = Field(default=8080, validation_alias=AliasChoices("MCP_PORT", "PORT"))
     log_level: str = Field(default="INFO", alias="LOG_LEVEL")
 
     @property
