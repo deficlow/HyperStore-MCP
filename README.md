@@ -240,33 +240,24 @@ See [`examples/`](examples/) for ready-to-paste configs for every supported clie
 
 ---
 
-## Run as a remote server
+## Self-hosting
 
-```bash
-# Streamable HTTP (modern, ChatGPT/OpenAI/Anthropic)
-hyperstore-mcp --transport http --host 0.0.0.0 --port 8080
-
-# Legacy SSE (older MCP clients)
-hyperstore-mcp --transport sse --port 8080
-```
-
-The hosted endpoint at `https://mcp.store.hypergpt.ai` runs the Docker image
-behind a CDN — no auth, rate-limited per IP.
+For self-hosting, use the [Docker image](#option-c--docker-for-remote-hosting).
+For direct invocation without Docker, the CLI accepts `--transport http|sse`
+(see `hyperstore-mcp --help`).
 
 ---
 
 ## Configuration
 
-All settings come from environment variables (see [`.env.example`](.env.example)):
+When self-hosting, these environment variables can be set
+(see [`.env.example`](.env.example) for the full list):
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `HYPERSTORE_API_BASE` | `https://store.hypergpt.ai` | Upstream API base URL |
-| `HYPERSTORE_TIMEOUT` | `20` | HTTP timeout in seconds |
-| `HYPERSTORE_USER_AGENT` | `hyperstore-mcp/{version}` | UA string |
-| `MCP_HOST` | `0.0.0.0` | Bind host (http/sse only) |
-| `MCP_PORT` | `8080` | Bind port (http/sse only) |
-| `LOG_LEVEL` | `INFO` | Logging level |
+| `MCP_HOST` | `0.0.0.0` | Bind host (http/sse transports) |
+| `MCP_PORT` | `8080` | Bind port (http/sse transports) |
+| `LOG_LEVEL` | `INFO` | Logging level (`DEBUG`, `INFO`, `WARNING`, `ERROR`) |
 
 ---
 
