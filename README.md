@@ -4,7 +4,10 @@
 
 > Plug 6,500+ AI apps into any LLM via the [Model Context Protocol](https://modelcontextprotocol.io).
 
-[![PyPI](https://img.shields.io/pypi/v/hyperstore-mcp.svg)](https://pypi.org/project/hyperstore-mcp/)
+[![PyPI](https://img.shields.io/pypi/v/hyperstore-mcp.svg?label=pypi&color=3776AB)](https://pypi.org/project/hyperstore-mcp/)
+[![Glama](https://glama.ai/mcp/servers/deficlow/HyperStore-MCP/badges/score.svg)](https://glama.ai/mcp/servers/deficlow/HyperStore-MCP)
+[![Smithery](https://smithery.ai/badge/@deficlow/hyperstore)](https://smithery.ai/server/deficlow/hyperstore)
+[![MCP Registry](https://img.shields.io/badge/MCP%20Registry-listed-2D9CDB)](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.deficlow/hyperstore-mcp)
 [![CI](https://github.com/deficlow/HyperStore-MCP/actions/workflows/ci.yml/badge.svg)](https://github.com/deficlow/HyperStore-MCP/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
