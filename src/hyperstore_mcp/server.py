@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 
 from . import __version__
 from .client import HyperStoreClient
@@ -19,6 +20,12 @@ def build_server(settings: Settings | None = None) -> FastMCP:
     """Construct a FastMCP server wired up with HyperStore tools, resources, and prompts."""
     settings = settings or get_settings()
 
+    # DNS rebinding protection is on by default when binding to a non-loopback host.
+    # Our server is a read-only public proxy with no auth or credentials — there is no
+    # asset for a rebinding attack to exfiltrate. Disable the host allowlist so any
+    # public hostname (the Railway-default URL, mcp.store.hypergpt.ai, etc.) works.
+    security = TransportSecuritySettings(enable_dns_rebinding_protection=False)
+
     mcp = FastMCP(
         name="hyperstore",
         instructions=(
@@ -27,6 +34,7 @@ def build_server(settings: Settings | None = None) -> FastMCP:
             "searches, `list_categories` to browse topics, and `get_app` for full detail. "
             "All data comes from store.hypergpt.ai and is read-only."
         ),
+        transport_security=security,
     )
 
     @asynccontextmanager
