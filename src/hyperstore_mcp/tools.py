@@ -147,6 +147,66 @@ def register_tools(mcp, client_factory):
         async with client_factory() as client:
             return await client.homepage(page=page)
 
+    @mcp.tool(
+        name="get_alternatives",
+        description=(
+            "Get curated alternatives to a specific AI app by slug. Returns the app plus a list "
+            "of competing/similar tools ranked by match confidence. Use this when the user asks "
+            "'what are alternatives to X', 'something like X', or 'X vs others'."
+        ),
+    )
+    async def get_alternatives(slug: Slug, limit: Limit = 24) -> dict:
+        async with client_factory() as client:
+            return await client.app_alternatives(slug, limit=limit)
+
+    @mcp.tool(
+        name="list_audiences",
+        description=(
+            "List the audience segments HyperStore curates tools for (e.g. 'developers', "
+            "'lawyers', 'students'), each with a slug and app count. Call this first to discover "
+            "audience slugs for `apps_for_audience`."
+        ),
+    )
+    async def list_audiences() -> list[dict]:
+        async with client_factory() as client:
+            return await client.list_audiences()
+
+    @mcp.tool(
+        name="apps_for_audience",
+        description=(
+            "Get the best AI tools for a specific audience by slug (from `list_audiences`), "
+            "ranked by relevance then popularity. Use when the user asks 'best AI tools for "
+            "{role/profession}'. Paginate with `cursor` (last app id from the previous page)."
+        ),
+    )
+    async def apps_for_audience(slug: Slug, cursor: Cursor = None, limit: Limit = 24) -> dict:
+        async with client_factory() as client:
+            return await client.audience_apps(slug, cursor=cursor, limit=limit)
+
+    @mcp.tool(
+        name="list_use_cases",
+        description=(
+            "List the use-case taxonomies HyperStore curates tools for (e.g. 'legal-contracts', "
+            "'tiktok-shorts'), each with a slug and app count. Call this first to discover "
+            "use-case slugs for `apps_for_use_case`."
+        ),
+    )
+    async def list_use_cases() -> list[dict]:
+        async with client_factory() as client:
+            return await client.list_use_cases()
+
+    @mcp.tool(
+        name="apps_for_use_case",
+        description=(
+            "Get AI tools for a specific use case by slug (from `list_use_cases`), ranked by "
+            "relevance then popularity. Use when the user asks 'AI tools for {task}'. Paginate "
+            "with `cursor` (last app id from the previous page)."
+        ),
+    )
+    async def apps_for_use_case(slug: Slug, cursor: Cursor = None, limit: Limit = 24) -> dict:
+        async with client_factory() as client:
+            return await client.use_case_apps(slug, cursor=cursor, limit=limit)
+
     return [
         search_apps,
         ai_search,
@@ -156,4 +216,9 @@ def register_tools(mcp, client_factory):
         category_apps,
         browse_apps,
         get_homepage,
+        get_alternatives,
+        list_audiences,
+        apps_for_audience,
+        list_use_cases,
+        apps_for_use_case,
     ]

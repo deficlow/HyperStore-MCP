@@ -13,7 +13,7 @@ def settings() -> Settings:
     return Settings(HYPERSTORE_API_BASE="https://store.hypergpt.ai")  # type: ignore[call-arg]
 
 
-async def test_server_registers_eight_tools(settings):
+async def test_server_registers_expected_tools(settings):
     mcp = build_server(settings)
     tools = await mcp.list_tools()
     names = {t.name for t in tools}
@@ -26,6 +26,11 @@ async def test_server_registers_eight_tools(settings):
         "category_apps",
         "browse_apps",
         "get_homepage",
+        "get_alternatives",
+        "list_audiences",
+        "apps_for_audience",
+        "list_use_cases",
+        "apps_for_use_case",
     }
 
 

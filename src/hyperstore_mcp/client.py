@@ -134,3 +134,36 @@ class HyperStoreClient:
             "/browse",
             {"letter": letter, "pricing": pricing, "cursor": cursor, "limit": limit},
         )
+
+    async def app_alternatives(self, slug: str, *, limit: int = 24) -> dict[str, Any]:
+        return await self._get(f"/apps/{slug}/alternatives", {"limit": limit})
+
+    async def list_audiences(self) -> list[dict[str, Any]]:
+        return await self._get("/audiences")
+
+    async def audience_apps(
+        self,
+        slug: str,
+        *,
+        cursor: int | None = None,
+        limit: int = 24,
+    ) -> dict[str, Any]:
+        return await self._get(
+            f"/audiences/{slug}/apps",
+            {"cursor": cursor, "limit": limit},
+        )
+
+    async def list_use_cases(self) -> list[dict[str, Any]]:
+        return await self._get("/use-cases")
+
+    async def use_case_apps(
+        self,
+        slug: str,
+        *,
+        cursor: int | None = None,
+        limit: int = 24,
+    ) -> dict[str, Any]:
+        return await self._get(
+            f"/use-cases/{slug}/apps",
+            {"cursor": cursor, "limit": limit},
+        )
