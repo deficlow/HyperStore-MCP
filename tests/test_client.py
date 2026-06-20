@@ -56,3 +56,53 @@ async def test_list_apps_drops_none_params(httpx_mock, settings):
     async with HyperStoreClient(settings) as client:
         result = await client.list_apps()
     assert result == {"apps": [], "next_cursor": None}
+
+
+async def test_app_alternatives_calls_endpoint(httpx_mock, settings):
+    httpx_mock.add_response(
+        url="https://store.hypergpt.ai/api/apps/notion/alternatives?limit=24",
+        json={"app": {"slug": "notion"}, "alternatives": []},
+    )
+    async with HyperStoreClient(settings) as client:
+        result = await client.app_alternatives("notion")
+    assert result["app"]["slug"] == "notion"
+
+
+async def test_list_audiences_calls_endpoint(httpx_mock, settings):
+    httpx_mock.add_response(
+        url="https://store.hypergpt.ai/api/audiences",
+        json=[{"slug": "developers", "plural_name": "Developers"}],
+    )
+    async with HyperStoreClient(settings) as client:
+        result = await client.list_audiences()
+    assert result[0]["slug"] == "developers"
+
+
+async def test_audience_apps_drops_none_cursor(httpx_mock, settings):
+    httpx_mock.add_response(
+        url="https://store.hypergpt.ai/api/audiences/developers/apps?limit=24",
+        json={"audience": {"slug": "developers"}, "apps": [], "next_cursor": None},
+    )
+    async with HyperStoreClient(settings) as client:
+        result = await client.audience_apps("developers")
+    assert result["audience"]["slug"] == "developers"
+
+
+async def test_list_use_cases_calls_endpoint(httpx_mock, settings):
+    httpx_mock.add_response(
+        url="https://store.hypergpt.ai/api/use-cases",
+        json=[{"slug": "legal-contracts", "name": "Legal contracts"}],
+    )
+    async with HyperStoreClient(settings) as client:
+        result = await client.list_use_cases()
+    assert result[0]["slug"] == "legal-contracts"
+
+
+async def test_use_case_apps_drops_none_cursor(httpx_mock, settings):
+    httpx_mock.add_response(
+        url="https://store.hypergpt.ai/api/use-cases/legal-contracts/apps?limit=24",
+        json={"use_case": {"slug": "legal-contracts"}, "apps": [], "next_cursor": None},
+    )
+    async with HyperStoreClient(settings) as client:
+        result = await client.use_case_apps("legal-contracts")
+    assert result["use_case"]["slug"] == "legal-contracts"
