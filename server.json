@@ -3,7 +3,7 @@
   "name": "io.github.deficlow/hyperstore-mcp",
   "title": "HyperStore",
   "description": "Search and inspect 6,500+ curated AI apps from the HyperStore directory.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
     "url": "https://github.com/deficlow/HyperStore-MCP",
     "source": "github"
@@ -13,14 +13,14 @@
     {
       "registryType": "pypi",
       "identifier": "hyperstore-mcp",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "transport": {
         "type": "stdio"
       }
     },
     {
       "registryType": "oci",
-      "identifier": "ghcr.io/deficlow/hyperstore-mcp:0.1.1",
+      "identifier": "ghcr.io/deficlow/hyperstore-mcp:0.1.2",
       "transport": {
         "type": "streamable-http",
         "url": "http://localhost:8080/mcp"

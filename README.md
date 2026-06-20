@@ -27,7 +27,7 @@ The LLM calls HyperStore MCP behind the scenes and answers with up-to-date, cura
 
 ## What you get
 
-**8 tools:**
+**13 tools:**
 
 | Tool | Purpose |
 |---|---|
@@ -39,6 +39,11 @@ The LLM calls HyperStore MCP behind the scenes and answers with up-to-date, cura
 | `category_apps` | Apps within a category |
 | `browse_apps` | A-Z directory listing |
 | `get_homepage` | Trending + top categories overview |
+| `get_alternatives` | Curated alternatives to an app |
+| `list_audiences` | Audience segments (developers, lawyers, …) |
+| `apps_for_audience` | Best AI tools for an audience |
+| `list_use_cases` | Use-case taxonomies (legal-contracts, …) |
+| `apps_for_use_case` | AI tools for a use case |
 
 **3 resources:**
 
